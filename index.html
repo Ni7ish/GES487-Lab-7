@@ -65,11 +65,7 @@
 }).addTo(map);
 
     L.control.sideBySide(OpenStreetMap_DE, Esri_WorldTopoMap).addTo(map);
-	title.onAdd = function (map) {
-              this._div = L.DomUtil.create('div', 'title'); // create a div with a class "title"
-              this._div.innerHTML = "<h3>Lab 7 Side-By-Side Map Swipe</h3>";  // Title text, may use html to customize
-              return this._div;
-          };
+	
     </script>
 </body>
 </html>
