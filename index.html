@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<h1> Lab 7 Side-By-Side Map </h1>
 
     <meta charset=utf-8 />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui' />
@@ -9,23 +8,9 @@
     <script src='http://cdn.leafletjs.com/leaflet/v1.9.4/leaflet.js'></script>
     <script src="leaflet-side-by-side.js"></script>
     <link href='http://cdn.leafletjs.com/leaflet/v1.9.4/leaflet.css' rel='stylesheet' />
-    <style>
-    body {
-        margin: 25;
-        padding: 25;
-		}
-		
-    #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-		min-height: 75%;
-    }
-    </style>
-	<style type="text/css">
+    <style type="text/css">
               html, body { margin: 0; padding: 0; height: 100%; }
-            
+              #map { min-height: 100%; }
 
 
                 .title {
@@ -35,14 +20,7 @@
                 background: rgba(255,255,255,0.8);
                 box-shadow: 0 0 15px rgba(0,0,0,0.2);
                 border-radius: 5px;
-				}
-				#map {
-        position: relative;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-		min-height: 75%;
-    }
+            }
             
 
             </style>
@@ -66,6 +44,14 @@
 
     L.control.sideBySide(OpenStreetMap_DE, Esri_WorldTopoMap).addTo(map);
 	
+	var title = L.control({position: 'topright'});
+	
+	title.onAdd = function (map) {
+              this._div = L.DomUtil.create('div', 'title'); // create a div with a class "title"
+              this._div.innerHTML = "<h3>Lab 7 Side-By-Side Map (Location: Bygstad, Norway)</h3>";  // Title text, may use html to customize
+              return this._div;
+          };
+		   title.addTo(map);
     </script>
 </body>
 </html>
