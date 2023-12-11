@@ -1,76 +1,58 @@
-# leaflet-side-by-side
+Nitish K Singh
+Graduate Project Tutorial
 
-A Leaflet control to add a split screen to compare two map overlays.
+Lab 7 – Leaflet Side-By-Side Map
 
-![screencast example](screencast.gif)
+Goal: The purpose of this tutorial is to create a basic webpage that displays a single panel with two maps displayed side-by-side with manipulable controls that translate any swipes to movement over both maps simultaneously.
+The displayed maps are overlayed over each other so that the central divider allows a comparison of two maps over a singular viewing range.
 
-### L.control.sideBySide(_leftLayer[s]_, _rightLayer[s]_)
+Step 1: Access this link on GitHub and download the fileset as a zip file to your computer. Click the green <>Code button for a dropdown menu to the download.
+ 
+Step 2: Extract downloaded files to a location of your choice.
+Step 3: Open file ‘index.html’ in a word editing program, preferably NotePad++ (Used here)
+ 
 
-Creates a new Leaflet Control for comparing two layers or collections of layers. It does not add the layers to the map - you need to do that manually. Extends `L.Control` but `setPosition()` and `getPosition` are `noop` because the position is always the same - it does not make sense for this control to be in the corner like other Leaflet controls.
+Step 4: The first edit needed to be made to the file in order to ensure up-to-date functionality is to change the Leaflet version calls within line 7 and 9. This ensures the latest version of Leaflet is being accessed by the file.
+To find out which version of Leaflet is current, search for or access the download page via this link. The first version displayed in the ‘Download Leaflet’ category is the currently hosted version as follows:
+ 
+Change highlighted and redlined version numbers in the ‘index.html’ file:
+ 
+Step 5: Find out coordinates for initial loading point of the map, whether from a pre-existing source or as desired. Steps to find one on your own:
+Visit maps.google.com in a browser and navigate to the desired location:
+ 
+Step 6: In the address bar of the browser, locate the Decimal Degrees coordinates for the current area of view.
+ 
+Coordinates: 61.3765647,5.6314515
+Step 7: Copy or make note of numbers in any location or edit the ‘index.html’ file in the body, as follows:
+ 
+NOTE: Fewer decimal places are possible to use but may result in slight deviation of map center from original location. Number subsequent to the Decimal Degrees value is the current Zoom level value the map initially loads in at. It may require to be changed if the selected basemap has limitations in Zoom range.
+Step 8: Locate Basemap for use at Leaflet using this link.
+Locate desired Basemap and copy variable text with embedded link titled : Plain Javascript
+ 
+ 
+Replace variable text in ‘index.html’ with copied version and repeat as necessary for both map variables.
+ 
+ 
+Changed to:
+ 
+NOTE: Both variables MUST include ‘.addTo(map)’ function at the end of variable creation, since both maps must appear simultaneously.
+Step 9: Once variables for both maps are created/edited, the function for the side-by-side map should be called/edited using recently updated variable names as follows:
+ 
+This will ensure the appropriate basemaps are used when the webpage and map load.
+Experiment as desired to incorporate into other map pages you may have created.
+ 
+Final Output:
+ 
+Note: On certain (most) browsers, the center controller does not work and the map must be navigated using regular left-click and drag mouse functions.
 
-### Parameters
 
-| parameter     | type           | description   |
-| ----------    | -------------- | ------------- |
-| `leftLayers`  | L.Layer\|array | A Leaflet Layer or array of layers to show on the left side of the map. Any layer added to the map that is in this array will be shown on the left |
-| `rightLayers` | L.Layer\|array | A Leaflet Layer or array of layers to show on the right side of the map. Any layer added to the map that is in this array will be shown on the right. These *should not be* the same as any layers in `leftLayers` |
-| `options`     | Object         | Options |
-| `options.padding` | Number     | Padding between slider min/max and the edge of the screen in pixels. Defaults to `44` - the width of the slider thumb |
+END
 
-### Events
 
-Subscribe to events using [these methods](http://leafletjs.com/reference.html#events)
 
-| Event         | Data           | Description   |
-| ----------    | -------------- | ------------- |
-| `leftlayeradd`  | [LayerEvent](http://leafletjs.com/reference.html#layer-event) | Fired when a layer is added to the left-hand-side pane |
-| `leftlayerremove` | [LayerEvent](http://leafletjs.com/reference.html#layer-event) | Fired when a layer is removed from the left-hand-side pane |
-| `rightlayeradd` | [LayerEvent](http://leafletjs.com/reference.html#layer-event) | Fired when a layer is added to the right-hand-side pane |
-| `rightlayerremove` | [LayerEvent](http://leafletjs.com/reference.html#layer-event) | You guessed it... fired when a layer is removed from the right-hand-side pane |
-| `dividermove` | {x: Number} | Fired when the divider is moved. Returns an event object with the property `x` = the pixels of the divider from the left side of the map container. |
-
-### Methods
-
-| Method           | Returns        | Description   |
-| ----------       | -------------- | ------------- |
-| `setLeftLayers`  | `this`         | Set the layer(s) for the left side  |
-| `setRightLayers` | `this`         | Set the layer(s) for the right side |
-
-### Usage
-
-Add the script to the top of your page (css is included in the javascript):
-
-```html
-<script src="leaflet-side-by-side.js"></script>
-```
-
-Or if you are using browserify:
-
-```js
-var sideBySide = require('leaflet-side-by-side')
-```
-
-Then create a map, add two layers to it, and create the SideBySide control and add it to the map:
-
-```js
-var map = L.map('map').setView([51.505, -0.09], 13);
-
-var myLayer1 = L.tileLayer(...).addTo(map);
-
-var myLayer2 = L.tileLayer(...).addTo(map)
-
-L.control.sideBySide(myLayer1, myLayer2).addTo(map);
-```
-
-### Example
-
-[Live Example](http://lab.digital-democracy.org/leaflet-side-by-side/) see [source](index.html)
-
-### Limitations
-
-- The divider is not movable with IE.
-- Probably won't work in IE8, but what does?
-
-### License
-
-MIT
+References
+Base Files: digidem/leaflet-side-by-side: A Leaflet control to add a split screen to compare two map overlays (github.com)
+Editor: Downloads | Notepad++ (notepad-plus-plus.org)
+Leaflet version: Download - Leaflet - a JavaScript library for interactive maps (leafletjs.com)
+Leaflet Basemaps: Leaflet Provider Demo (leaflet-extras.github.io)
+Maps Coordinates: Google Maps
